@@ -1,0 +1,17 @@
+[
+    {
+        "tokenId": 1,
+        "Character" : "Char1",
+        "Role" : "Role1"
+    },
+    {
+        "tokenId": 2,
+        "Character" : "Char2",
+        "Role" : "Role2"
+    },
+    {
+        "tokenId": 3,
+        "Character" : "Char1",
+        "Role" : "Role2"
+    }
+]
