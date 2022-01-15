@@ -4,7 +4,6 @@ dotenv.config()
 
 //https://github.com/louischatriot/nedb
 import Nedb from 'nedb'
-import _, { map } from 'underscore';
 
 /*
 #########
@@ -13,9 +12,10 @@ Initialize
 */
 
 const maxSupplyToken = 666
-const projectVariant = ["metaheros", "https://ipfs.io/ipfs/QmXdVyGUhqRVx9iJ5zv7D54cc2pLcpiGRRqnoDMkQWDCCz", 1]
+// const projectVariant = ["metaheros", "https://ipfs.io/ipfs/QmXdVyGUhqRVx9iJ5zv7D54cc2pLcpiGRRqnoDMkQWDCCz", 1]
 // const projectVariant = ["coodles", "https://ipfs.io/ipfs/QmSZGZH5fmbrhysZLNBnhmq4hMnjMgQsKzRdDTNZcLyqE5", 1]
 // const projectVariant = ["shibaShelterNFT", "https://ipfs.io/ipfs/QmVbQmMvLCkUZxRoefJev8oTbVfwRjiEEP1s754Je3wQ43", 2]
+const projectVariant = ["shibaShelterNFT", "https://gateway.pinata.cloud/ipfs/QmVbQmMvLCkUZxRoefJev8oTbVfwRjiEEP1s754Je3wQ43", 2]
 const projectName = projectVariant[0]
 const metaDataUrl = projectVariant[1]
 const urlVariant = projectVariant[2]
@@ -83,7 +83,7 @@ const getIpfsTokens = async function (neDbConnection, tokensDb, tokensToQuery, m
     let results = [];
     for (let i = 0; i < tokensToQuery.length; i++) {
         if (!tokensDb.some(item => item.tokenId === tokensToQuery[i])) {
-            console.log("tokenId: " + tokensToQuery[i] + " not in Db, get data now")
+            console.log("tokenId: " + tokensToQuery[i] + " not in Db, get data now, DATE:" + (new Date().toLocaleTimeString('de-DE')))
             await delay();
             var url
             if (urlVariant == 1) {
