@@ -1,0 +1,41 @@
+{
+  "projects": [
+    {
+      "name": "metaheros",
+      "url": "QmXdVyGUhqRVx9iJ5zv7D54cc2pLcpiGRRqnoDMkQWDCCz",
+      "isIpfs": true,
+      "urlVariant": 1,
+      "traitJsonType": 1,
+      "traitWeights": [
+        { "key": "Identity", "weight": 2 },
+        { "key": "Origin", "weight": 1.5 }
+      ]
+    },
+    {
+      "name": "starCatchers",
+      "url": "QmYACuxce6MCfppZRBdbY9D6etwX9m63tJJVmx3FGa7ND6",
+      "isIpfs": true,
+      "urlVariant": 1,
+      "traitJsonType": 1,
+      "traitWeights": [{ "key": "Background_Bling ", "weight": 5 }]
+    },
+    {
+      "name": "2112",
+      "url": "https://mint.2112.run/tokens721",
+      "isIpfs": false,
+      "urlVariant": 2,
+      "traitJsonType": 2,
+      "traitWeights": [
+        { "key": "Special", "weight": 20 },
+        { "key": "Talent", "weight": 10 }
+      ]
+    }
+  ],
+  "ipfsGateways": [
+    "https://gateway.pinata.cloud/ipfs/",
+    "https://ipfs.io/ipfs/",
+    "https://cf-ipfs.com/ipfs/",
+    "https://gateway.ipfs.io/ipfs/",
+    "https://hardbin.com/ipfs/"
+  ]
+}
