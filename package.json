@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc --build",
-    "start": "node ./build/downloadData.js",
-    "calc": "node ./build/calculateRarity.js"
+    "start": "npm run build && node ./build/downloadData.js",
+    "calc": "npm run build && node ./build/calculateRarity.js",
+    "opensea": "npm run build && node ./build/checkOpenSea.js"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +17,7 @@
     "axios": "^0.21.4",
     "dotenv": "^10.0.0",
     "nedb": "^1.8.0",
+    "playwright": "^1.22.2",
     "underscore": "^1.13.1",
     "web3": "^1.5.2"
   },

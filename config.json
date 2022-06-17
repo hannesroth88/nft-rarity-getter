@@ -29,6 +29,16 @@
         { "key": "Special", "weight": 20 },
         { "key": "Talent", "weight": 10 }
       ]
+    },
+    {
+      "name": "aswangtribe",
+      "url": "https://aswang-api.herokuapp.com/AswangTribe/0",
+      "contractAddress" : "0xa462127735352b1f03da8ab92a87803d05cc6a7b",  
+      "isIpfs": false,
+      "urlVariant": 1,
+      "traitJsonType": 1,
+      "traitWeights": [
+      ]
     }
   ],
   "ipfsGateways": [

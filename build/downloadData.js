@@ -17,8 +17,8 @@ const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const nedb_1 = __importDefault(require("nedb"));
 const fs = require("fs");
-const MAX_SUPPLY_TOKEN = 1000;
-const PROJECT_NAME = "metaheros";
+const MAX_SUPPLY_TOKEN = 3333;
+const PROJECT_NAME = "aswangtribe";
 //load config
 const config = JSON.parse(fs.readFileSync("config.json"));
 // get project
@@ -60,6 +60,7 @@ const getIpfsTokens = function (neDbConnection, tokensDb, tokensToQuery, metaDat
                 else if (project.urlVariant == 2) {
                     url = metaDataUrl + "/" + tokensToQuery[i] + ".json";
                 }
+                console.log(url);
                 const res = yield axios_1.default.get(url);
                 console.log("tokenId: " + tokensToQuery[i] + " not in Db, get data now,    DATE:" + new Date().toLocaleTimeString("de-DE") + "    url:" + url);
                 yield delay();
@@ -92,6 +93,7 @@ const getIpfsTokens = function (neDbConnection, tokensDb, tokensToQuery, metaDat
 };
 function downloadData(neDbConnection) {
     return __awaiter(this, void 0, void 0, function* () {
+        console.log("Download Data");
         neDbConnection.find({}, function (err, tokensDb) {
             return __awaiter(this, void 0, void 0, function* () {
                 if (err)

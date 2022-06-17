@@ -6,8 +6,8 @@ import Nedb from "nedb"
 import _, { map } from "underscore"
 const fs = require("fs")
 
-const MAX_SUPPLY_TOKEN = 1000
-const PROJECT_NAME = "metaheros"
+const MAX_SUPPLY_TOKEN = 3333
+const PROJECT_NAME = "aswangtribe"
 
 //load config
 const config = JSON.parse(fs.readFileSync("config.json")) as Config
@@ -52,6 +52,8 @@ const getIpfsTokens = async function (neDbConnection: Nedb, tokensDb: Token[], t
       } else if (project.urlVariant == 2) {
         url = metaDataUrl + "/" + tokensToQuery[i] + ".json"
       }
+      console.log(url);
+      
       const res = await axios.get(url)
 
       console.log("tokenId: " + tokensToQuery[i] + " not in Db, get data now,    DATE:" + new Date().toLocaleTimeString("de-DE") + "    url:" + url)
@@ -84,6 +86,8 @@ const getIpfsTokens = async function (neDbConnection: Nedb, tokensDb: Token[], t
 
 
 async function downloadData(neDbConnection: Nedb<any>) {
+  console.log("Download Data");
+  
   neDbConnection.find({}, async function (err: any, tokensDb: any[]) {
     if (err) return console.log(err)
     const tokenIdsDb = tokensDb.map((token: { tokenId: any }) => token.tokenId)

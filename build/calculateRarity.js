@@ -18,7 +18,7 @@ const nedb_1 = __importDefault(require("nedb"));
 const underscore_1 = __importDefault(require("underscore"));
 const fs = require("fs");
 const MAX_SUPPLY_TOKEN = 1000;
-const PROJECT_NAME = "metaheros";
+const PROJECT_NAME = "aswangtribe";
 //load config
 const config = JSON.parse(fs.readFileSync("config.json"));
 // get project
@@ -66,6 +66,13 @@ function calculateRarity(neDbConnection) {
                     return token.tokenId;
                 });
                 console.log("Top 100 TokenIDs: [" + valuableTokenIds + "]");
+                // save top 100 to json
+                let data = JSON.stringify(valuableTokenIds);
+                fs.writeFileSync("./db/" + project.name + "_top100.json", data);
+                // Generate Links
+                valuableTokenIds.forEach((item) => {
+                    console.log(`https://opensea.io/assets/ethereum/0xa462127735352b1f03da8ab92a87803d05cc6a7b/${item}`);
+                });
             });
         });
     });

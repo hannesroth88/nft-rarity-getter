@@ -7,7 +7,7 @@ import _, { map } from "underscore"
 const fs = require("fs")
 
 const MAX_SUPPLY_TOKEN = 1000
-const PROJECT_NAME = "metaheros"
+const PROJECT_NAME = "aswangtribe"
 
 //load config
 const config = JSON.parse(fs.readFileSync("config.json")) as Config
@@ -41,7 +41,6 @@ function escapeSpecialChars(string: string) {
     .replace(/\s/g, "_")
 }
 
-
 async function calculateRarity(neDbConnection: Nedb<any>) {
   neDbConnection.find({}, async function (err: any, tokensDb: any) {
     if (err) return console.log(err)
@@ -61,9 +60,17 @@ async function calculateRarity(neDbConnection: Nedb<any>) {
       return token.tokenId
     })
     console.log("Top 100 TokenIDs: [" + valuableTokenIds + "]")
+
+    // save top 100 to json
+    let data = JSON.stringify(valuableTokenIds)
+    fs.writeFileSync( "./db/"+ project.name + "_top100.json", data)
+
+    // Generate Links
+    valuableTokenIds.forEach((item) => {
+      console.log(`https://opensea.io/assets/ethereum/${project.contractAddress}/${item}`)
+    })
   })
 }
-
 
 function appendTraitScoreToTokens(tokensDb: any, rarityTraits: any[]) {
   var tokenScores = tokensDb.map((token) => {

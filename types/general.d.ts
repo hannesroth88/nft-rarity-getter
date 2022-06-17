@@ -6,6 +6,7 @@ interface Config {
 interface Project {
   name: string
   url: string
+  contractAddress:string
   isIpfs: boolean
   urlVariant: number
   traitJsonType: number
