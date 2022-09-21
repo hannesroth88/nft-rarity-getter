@@ -15,13 +15,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs");
 const axios_1 = __importDefault(require("axios"));
 require("dotenv").config();
-const PROJECT_NAME = "aswangtribe";
+const PROJECT_NAME = "stoics";
 //load config
 const config = JSON.parse(fs.readFileSync("config.json"));
 // get project
 const project = config.projects.find((project) => project.name == PROJECT_NAME);
 const delay = (time) => new Promise((res) => setTimeout(res, time));
-const threshold = 0.5;
+const threshold = 1;
 main();
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -37,22 +37,34 @@ function main() {
             try {
                 const asset = top100[i];
                 const baseUrl = "https://api.opensea.io/api/v1/asset";
-                const assetUrl = `https://opensea.io/assets/ethereum/0xa462127735352b1f03da8ab92a87803d05cc6a7b/${asset}`;
+                const assetUrl = `https://opensea.io/assets/ethereum/${project.contractAddress}/${asset}`;
                 const url = `${baseUrl}/${project.contractAddress}/${asset}`;
-                console.log(url);
+                console.log(assetUrl);
                 // Listings
                 const responseListing = yield axios_1.default.get(url + "/listings?limit=10", options);
-                const allListings = [...responseListing.data.listings, ...responseListing.data.seaport_listings];
+                let allListings;
+                if (responseListing.data.listings) {
+                    allListings = [...responseListing.data.listings, ...responseListing.data.seaport_listings];
+                }
+                else {
+                    allListings = responseListing.data.seaport_listings;
+                }
                 if (allListings.length > 0) {
                     const listings = allListings.sort(function (a, b) {
                         return b.current_price - a.current_price;
                     });
-                    getListing(listings, asset, assetUrl, interestingTokenListings);
+                    getListing(listings[0], asset, assetUrl, interestingTokenListings);
                 }
                 yield delay(100);
                 // Offers
                 const responseOffers = yield axios_1.default.get(url + "/offers?limit=10", options);
-                const allOffers = [...responseOffers.data.offers, ...responseOffers.data.seaport_offers];
+                let allOffers;
+                if (responseOffers.data.offers) {
+                    allOffers = [...responseOffers.data.offers, ...responseOffers.data.seaport_offers];
+                }
+                else {
+                    allOffers = responseOffers.data.seaport_offers;
+                }
                 if (allOffers.length > 0) {
                     const offers = allOffers.sort(function (a, b) {
                         return b.current_price - a.current_price;
@@ -70,11 +82,12 @@ function main() {
     });
 }
 function getListing(data, asset, assetUrl, interestingTokenListings) {
-    var _a, _b;
-    if ((data === null || data === void 0 ? void 0 : data.current_price) && (((_a = data === null || data === void 0 ? void 0 : data.payment_token_contract) === null || _a === void 0 ? void 0 : _a.symbol) == "ETH" || ((_b = data === null || data === void 0 ? void 0 : data.payment_token_contract) === null || _b === void 0 ? void 0 : _b.symbol) == "WETH")) {
+    // be careful currency can't be checked anymore with data, do not write Bot on this
+    if (data === null || data === void 0 ? void 0 : data.current_price) {
         const ethPrice = (data === null || data === void 0 ? void 0 : data.current_price) / 10 ** 18;
-        const token = { id: asset, url: assetUrl, price: ethPrice };
+        console.log(`${ethPrice} ETH`);
         if (ethPrice < threshold) {
+            const token = { id: asset, url: assetUrl, price: ethPrice };
             console.log(JSON.stringify({ listing: token }));
             interestingTokenListings.push(token);
         }
@@ -84,8 +97,9 @@ function getOffer(data, asset, assetUrl, interestingTokenOffers) {
     var _a, _b;
     if ((data === null || data === void 0 ? void 0 : data.current_price) && (((_a = data === null || data === void 0 ? void 0 : data.payment_token_contract) === null || _a === void 0 ? void 0 : _a.symbol) == "ETH" || ((_b = data === null || data === void 0 ? void 0 : data.payment_token_contract) === null || _b === void 0 ? void 0 : _b.symbol) == "WETH")) {
         const ethPrice = (data === null || data === void 0 ? void 0 : data.current_price) / 10 ** 18;
-        const token = { id: asset, url: assetUrl, price: ethPrice };
+        console.log(ethPrice);
         if (ethPrice < threshold) {
+            const token = { id: asset, url: assetUrl, price: ethPrice };
             console.log(JSON.stringify({ offer: token }));
             interestingTokenOffers.push(token);
         }

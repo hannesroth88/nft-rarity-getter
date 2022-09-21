@@ -6,8 +6,8 @@ import Nedb from "nedb"
 import _, { map } from "underscore"
 const fs = require("fs")
 
-const MAX_SUPPLY_TOKEN = 1000
-const PROJECT_NAME = "aswangtribe"
+const MAX_SUPPLY_TOKEN = 5000
+const PROJECT_NAME = "stoics"
 
 //load config
 const config = JSON.parse(fs.readFileSync("config.json")) as Config

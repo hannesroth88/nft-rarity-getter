@@ -6,8 +6,8 @@ import Nedb from "nedb"
 import _, { map } from "underscore"
 const fs = require("fs")
 
-const MAX_SUPPLY_TOKEN = 3333
-const PROJECT_NAME = "aswangtribe"
+const MAX_SUPPLY_TOKEN = 5000
+const PROJECT_NAME = "stoics"
 
 //load config
 const config = JSON.parse(fs.readFileSync("config.json")) as Config
@@ -58,7 +58,6 @@ const getIpfsTokens = async function (neDbConnection: Nedb, tokensDb: Token[], t
 
       console.log("tokenId: " + tokensToQuery[i] + " not in Db, get data now,    DATE:" + new Date().toLocaleTimeString("de-DE") + "    url:" + url)
       await delay()
-
       try {
         // Write to DB
         let newToken: any = {}

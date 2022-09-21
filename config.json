@@ -1,6 +1,16 @@
 {
   "projects": [
     {
+      "name": "rasc",
+      "url": "https://rasc.mypinata.cloud/ipfs/QmWnoVd15qypEMFnhVVKdLygFCiB3TyXL9sFBDVXYHAZe9",
+      "contractAddress" : "0xdcb1cdfe2b5f592e7bdc2696b7a68c6e866c4cc2",  
+      "isIpfs": false,
+      "urlVariant": 1,
+      "traitJsonType": 1,
+      "traitWeights": [
+      ]
+    },
+    {
       "name": "metaheros",
       "url": "QmXdVyGUhqRVx9iJ5zv7D54cc2pLcpiGRRqnoDMkQWDCCz",
       "isIpfs": true,
@@ -39,6 +49,16 @@
       "traitJsonType": 1,
       "traitWeights": [
       ]
+    },
+    {
+      "name": "stoics",
+      "url": "https://thestoics.s3.us-east-2.amazonaws.com/art_type_background_accessories",
+      "contractAddress" : "0x12632d6e11c6bbc0c53f3e281ea675e5899a5df5",  
+      "isIpfs": false,
+      "urlVariant": 1,
+      "traitJsonType": 1,
+      "traitWeights": [
+      ]
     }
   ],
   "ipfsGateways": [
@@ -46,6 +66,7 @@
     "https://ipfs.io/ipfs/",
     "https://cf-ipfs.com/ipfs/",
     "https://gateway.ipfs.io/ipfs/",
-    "https://hardbin.com/ipfs/"
+    "https://hardbin.com/ipfs/",
+    "https://ipfs.eth.aragon.network/ipfs/"
   ]
 }

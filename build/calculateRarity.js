@@ -17,8 +17,8 @@ dotenv_1.default.config();
 const nedb_1 = __importDefault(require("nedb"));
 const underscore_1 = __importDefault(require("underscore"));
 const fs = require("fs");
-const MAX_SUPPLY_TOKEN = 1000;
-const PROJECT_NAME = "aswangtribe";
+const MAX_SUPPLY_TOKEN = 5000;
+const PROJECT_NAME = "stoics";
 //load config
 const config = JSON.parse(fs.readFileSync("config.json"));
 // get project
@@ -71,7 +71,7 @@ function calculateRarity(neDbConnection) {
                 fs.writeFileSync("./db/" + project.name + "_top100.json", data);
                 // Generate Links
                 valuableTokenIds.forEach((item) => {
-                    console.log(`https://opensea.io/assets/ethereum/0xa462127735352b1f03da8ab92a87803d05cc6a7b/${item}`);
+                    console.log(`https://opensea.io/assets/ethereum/${project.contractAddress}/${item}`);
                 });
             });
         });

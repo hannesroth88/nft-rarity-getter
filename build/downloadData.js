@@ -17,8 +17,8 @@ const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const nedb_1 = __importDefault(require("nedb"));
 const fs = require("fs");
-const MAX_SUPPLY_TOKEN = 3333;
-const PROJECT_NAME = "aswangtribe";
+const MAX_SUPPLY_TOKEN = 5000;
+const PROJECT_NAME = "stoics";
 //load config
 const config = JSON.parse(fs.readFileSync("config.json"));
 // get project
